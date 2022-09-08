@@ -3,233 +3,222 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:local="clr-namespace:QuSwense.ModernControls"
+    xmlns:lvw="clr-namespace:QuSwense.ModernControls.View"
     xmlns:models="clr-namespace:QuSwense.ModernControls.ViewModel"
     mc:Ignorable="d">
 
-    <!-- Menu Button -->
-    <Style TargetType="{x:Type Button}" x:Key="BaseMenuButton">
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Padding" Value="10" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Cursor" Value="Hand" />
+    <Style TargetType="{x:Type lvw:CustomMainWindow}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
-                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
-                    </Border>
+                <ControlTemplate TargetType="Window" >
+                    <!-- ContentPresenter -->
+                    <ContentPresenter />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type Button}" x:Key="TitleBarButton" BasedOn="{StaticResource BaseMenuButton}">
-        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
-    </Style>
-
-    <!-- Window Control Button -->
-    <Style TargetType="{x:Type Button}" x:Key="WindowControlButton" BasedOn="{StaticResource TitleBarButton}">
-        <Setter Property="Opacity" Value="0.2" />
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#efefef" />
-                <Setter Property="Opacity" Value="0.8" />
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
-    <!-- Window Close Button -->
-    <Style TargetType="{x:Type Button}" x:Key="WindowCloseButton" BasedOn="{StaticResource WindowControlButton}">
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#f56991" />
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
-    <!-- Window Logo Button -->
-    <Style TargetType="{x:Type Button}" x:Key="WindowLogoButton" BasedOn="{StaticResource TitleBarButton}">
-        <Setter Property="Padding" Value="4" />
-    </Style>
-
-    <!-- Window Menu Button -->
-    <Style TargetType="{x:Type Button}" x:Key="SidebarMenuButton" BasedOn="{StaticResource BaseMenuButton}">
-        <Setter Property="Padding" Value="2" />
-        <Setter Property="Opacity" Value="0.5" />
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#efefef" />
-                <Setter Property="Opacity" Value="1" />
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
-    <!-- Menu Tooltip Style Template -->
-
-    <Style TargetType="ToolTip" x:Key="tt_style">
-
-        <Setter Property="Placement" Value="Right"/>
-        <Setter Property="Height" Value="40"/>
-        <Setter Property="Width" Value="100"/>
-        <Setter Property="Margin" Value="20,0,0,0"/>
-        <Setter Property="Background" Value="#4A5668"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="FontFamily" Value="Fonts/Roboto-Light.ttf #Roboto"/>
-        <Setter Property="FontSize" Value="16"/>
-        <Setter Property="PlacementRectangle" Value="60,0,0,0"/>
-        <Setter Property="HorizontalOffset" Value="15"/>
-        <Setter Property="VerticalOffset" Value="6"/>
-        <Setter Property="HasDropShadow" Value="True"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-
-    </Style>
-
-    <ControlTemplate x:Key="CustomMainWindowControlTemplate" TargetType="local:CustomMainWindow">
-        <Border Padding="{Binding OuterMarginSize}" d:Padding="10" >
-            <Grid >
-                <Border x:Name="Container" Background="#efefef" CornerRadius="10" d:CornerRadius="10" />
-                <Border Background="#ffffff" CornerRadius="10" d:CornerRadius="10">
-                    <Border.Effect>
-                        <DropShadowEffect ShadowDepth="0" Opacity="0.2" />
-                    </Border.Effect>
+    <ControlTemplate x:Key="CaptionButtonTemplate" TargetType="{x:Type lvw:CaptionButton}">
+        <Grid Height="20">
+            <Border x:Name="ButtonBackground" 
+                CornerRadius="{Binding Path=CornerRadius, RelativeSource={RelativeSource TemplatedParent}}" 
+                Opacity="1" BorderThickness="0" Background="{TemplateBinding Background}">
+                <Border>
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#ccffffff" Offset="0"/>
+                            <GradientStop Color="Transparent" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
                 </Border>
-                <Grid>
-                    <Grid.OpacityMask>
-                        <VisualBrush Visual="{Binding ElementName=Container}" />
-                    </Grid.OpacityMask>
-                    <Grid.RowDefinitions>
+            </Border>
 
-                        <!-- Title Bar -->
-                        <RowDefinition Height="35" d:Height="35" />
-                        <!-- Drop shadow -->
-                        <RowDefinition Height="Auto" />
-                        <!-- Window Content -->
-                        <RowDefinition Height="*" />
+            <Border x:Name="ButtonEdgesBorder" CornerRadius="{Binding Path=CornerRadius, RelativeSource={RelativeSource TemplatedParent}}" Opacity="1" BorderBrush="Black" BorderThickness="{TemplateBinding BorderThickness}">
+                <Border.BitmapEffect>
+                    <DropShadowBitmapEffect Color="#FFFFFFFF" Direction="270" ShadowDepth=".75" Softness="0.20"/>
+                </Border.BitmapEffect>
+            </Border>
+            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-                    </Grid.RowDefinitions>
+        </Grid>
 
-                    <!-- Title Bar -->
-                    <Grid Grid.Column="0" Panel.ZIndex="1">
-
-                        <Grid.ColumnDefinitions>
-                            <!-- Icon -->
-                            <ColumnDefinition Width="Auto" />
-                            <!-- Title -->
-                            <ColumnDefinition Width="Auto" />
-                            <!-- Header -->
-                            <ColumnDefinition Width="*" />
-                            <!-- Windows Button -->
-                            <ColumnDefinition Width="Auto" />
-
-                        </Grid.ColumnDefinitions>
-
-                        <!-- Icon -->
-                        <Button Style="{StaticResource WindowLogoButton}">
-                            <Button.InputBindings>
-                                <MouseBinding Gesture="RightClick" Command="{Binding MenuCommand}" />
-                            </Button.InputBindings>
-                            <Image Source="/Images/QuSwenseTool-logo.png" />
-                        </Button>
-
-                        <!-- Title -->
-                        <Viewbox Grid.Column="1">
-                            <TextBlock Text="QuSwense Tool" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 6" Padding="5"/>
-                        </Viewbox>
-
-                        <!-- Window Buttons -->
-                        <StackPanel Grid.Column="3" Orientation="Horizontal">
-                            <Button Style="{StaticResource WindowControlButton}" >
-                                <Image Source="/Images/window-minimize.png" />
-                            </Button>
-                            <Button Style="{StaticResource WindowControlButton}" >
-                                <Image Source="/Images/window-maximize.png" />
-                            </Button>
-                            <Button Style="{StaticResource WindowCloseButton}" >
-                                <Image Source="/Images/window-close.png" />
-                            </Button>
-                        </StackPanel>
-
-                    </Grid>
-
-                    <!-- Drop shadow -->
-                    <Border Grid.Row="1" Height="6" BorderThickness="0 0.2 0 0">
-                        <!-- Underline -->
-                        <Border.BorderBrush>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1, 0">
-                                <GradientStop Color="#ffffff" Offset="0.0" />
-                                <GradientStop Color="#686868" Offset="0.5" />
-                                <GradientStop Color="#ffffff" Offset="1.0" />
-                            </LinearGradientBrush>
-                        </Border.BorderBrush>
-
-                        <!-- Drop shadow -->
-                        <Border.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="0, 1">
-                                <GradientStop Color="#fafafa" Offset="0.0" />
-                                <GradientStop Color="#ffffff" Offset="1.0" />
-                            </LinearGradientBrush>
-                        </Border.Background>
-
-                    </Border>
-
-                    <!-- Page Content --><!--
-                    <Border Grid.Row="2" Padding="{Binding InnerContentPadding}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            --><!--<StackPanel x:Name="navigationPanel" Grid.Column="0" HorizontalAlignment="Left" Width="30" Background="White">
-                                <Button x:Name="jsonViewerBtn" Style="{StaticResource SidebarMenuButton}" Command="{Binding NavigationView.JsonViewerCommand}">
-                                    <Image Source="/Images/json-file.png" />
-                                </Button>
-                            </StackPanel>--><!--
-                            <Border Grid.Column="1" Width="6" BorderThickness="0 0.2 0 0">
-                                --><!-- Underline --><!--
-                                <Border.BorderBrush>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1, 0">
-                                        <GradientStop Color="#ffffff" Offset="0.0" />
-                                        <GradientStop Color="#686868" Offset="0.5" />
-                                        <GradientStop Color="#ffffff" Offset="1.0" />
-                                    </LinearGradientBrush>
-                                </Border.BorderBrush>
-
-                                --><!-- Drop shadow --><!--
-                                <Border.Background>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0, 1">
-                                        <GradientStop Color="#fafafa" Offset="0.0" />
-                                        <GradientStop Color="#ffffff" Offset="1.0" />
-                                    </LinearGradientBrush>
-                                </Border.Background>
-
-                            </Border>
-                            <ContentControl x:Name="contentHolderPanel" Grid.Column="2" Content="{Binding NavigationView.SelectedViewModel}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
-                        </Grid>
-                    </Border>-->
-                </Grid>
-            </Grid>
-        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="ButtonBackground" Property="Background" Value="{Binding Path=HoverBackground, RelativeSource={RelativeSource TemplatedParent}}"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="true">
+                <Setter TargetName="ButtonBackground" Property="Background" Value="{Binding Path=PressedBackground, RelativeSource={RelativeSource TemplatedParent}}"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
     </ControlTemplate>
-    
-    <Style TargetType="{x:Type Window}" x:Key="BaseWindow" >
-        
+
+    <Style TargetType="{x:Type lvw:CaptionButton}" x:Key="CaptionButtonStyle">
+        <Setter Property="Background" Value="#000055"/>
+        <Setter Property="HoverBackground" Value="#0000cc"/>
+        <Setter Property="PressedBackground" Value="#000033"/>
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontFamily" Value="Lucida Console" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Width" Value="28"/>
+        <Setter Property="Height" Value="20" />
+        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+        <Setter Property="Template" Value="{StaticResource CaptionButtonTemplate}" />
     </Style>
 
-    <Style TargetType="{x:Type local:CustomMainWindow}" BasedOn="{StaticResource BaseWindow}">
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="WindowStyle" Value="None" />
-        <Setter Property="AllowsTransparency" Value="True" />
-        <Setter Property="DataContext" Value="{Binding DataContext,  RelativeSource={RelativeSource Self}}" />
-        <Setter Property="MinWidth" Value="400" />
-        <Setter Property="MinHeight" Value="400" />
-        <Setter Property="WindowChrome.WindowChrome">
+    <Style TargetType="{x:Type lvw:HelpButton}" BasedOn="{StaticResource CaptionButtonStyle}" x:Shared="False">
+        <Setter Property="BorderThickness" Value="1,1,0,1"/>
+        <Setter Property="CornerRadius" Value="0,0,0,4"/>
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontFamily" Value="Lucida Console" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Content" Value="?"/>
+    </Style>
+    
+    <Style TargetType="{x:Type lvw:MinimizeButton}" BasedOn="{StaticResource CaptionButtonStyle}" x:Shared="False">
+        <Setter Property="Button.Content">
             <Setter.Value>
-                <WindowChrome ResizeBorderThickness="{Binding RelativeSource={RelativeSource Mode=TemplatedParent, AncestorType={x:Type local:CustomMainWindow}}, Path=ResizeBorderThickness}" CaptionHeight="35" CornerRadius="0" GlassFrameThickness="0" />
+                <Image Source="/QuSwense.ModernControls;component/Images/minimize.jpg" Width="12" Margin="0,4,0,0"/>
             </Setter.Value>
         </Setter>
-        <Setter Property="Template" Value="{StaticResource CustomMainWindowControlTemplate}" />
+        <Setter Property="BorderThickness" Value="1,1,1,1"/>
+        <Setter Property="CornerRadius" Value="0,0,0,4"/>
     </Style>
+
+    <Style TargetType="{x:Type lvw:MaximizeButton}" BasedOn="{StaticResource CaptionButtonStyle}" x:Shared="False">
+        <Setter Property="BorderThickness" Value="0,1,1,1"/>
+        <Setter Property="Content">
+            <Setter.Value>
+                <Grid>
+                    <Image Source="/QuSwense.ModernControls;component/Images/maximize.png" Width="12" Visibility="{Binding MaximizeIconVisibility}"/>
+                    <Image Source="/QuSwense.ModernControls;component/Images/restore.png" Width="12" Visibility="{Binding RestoreIconVisibility}"/>
+                </Grid>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type lvw:CloseButton}" BasedOn="{StaticResource CaptionButtonStyle}" x:Shared="False">
+        <Setter Property="Background" Value="#770000"/>
+        <Setter Property="HoverBackground" Value="#cc0000"/>
+        <Setter Property="PressedBackground" Value="#440000"/>
+        <Setter Property="Margin" Value="0,0,11,0"/>
+        <Setter Property="BorderThickness" Value="0,1,1,1"/>
+        <Setter Property="CornerRadius" Value="0,0,4,0"/>
+        <Setter Property="Content">
+            <Setter.Value>
+                <Image Source="/QuSwense.ModernControls;component/Images/close.png" Width="11"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type lvw:MenuSidebarTree}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type lvw:MenuSidebarTree}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <ScrollViewer Focusable="False" CanContentScroll="False" VerticalScrollBarVisibility="Auto" Padding="{Binding Path=ScrollViewerPadding, RelativeSource={RelativeSource TemplatedParent}}">
+                            <ItemsPresenter />
+                        </ScrollViewer>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <HierarchicalDataTemplate DataType="{x:Type models:MenuNode}" ItemsSource="{Binding ChildNodes}" >
+                    <TextBlock Text="{Binding Text}" />
+                </HierarchicalDataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="TreeViewItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type TreeViewItem}">
+                                <Grid Margin="{Binding Path=ItemContainerStyleGridMargin, RelativeSource={RelativeSource FindAncestor ,AncestorType={x:Type lvw:MenuSidebarTree}}}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="{Binding Path=HeaderContentWidth, RelativeSource={RelativeSource FindAncestor ,AncestorType={x:Type lvw:MenuSidebarTree}}}"/>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Border x:Name="TreeViewHeaderBorder" Grid.Column="0" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
+                                        <ContentPresenter x:Name="TreeViewHeaderBorder_PART_Header" ContentSource="Header" />
+                                    </Border>
+                                    <ItemsPresenter x:Name="TreeViewItemsHost" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+                                    <ToggleButton x:Name="TreeViewExpander" Grid.Column="1" IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press" Margin="2,2,0,10" >
+                                        <ToggleButton.Style>
+                                            <Style TargetType="ToggleButton">
+                                                <Setter Property="Focusable" Value="False"/>
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="ToggleButton">
+                                                            <Grid Background="Transparent">
+                                                                <Viewbox Width="10" Height="10" Margin="1">
+                                                                    <Path x:Name="ExpandPath" HorizontalAlignment="Left" VerticalAlignment="Center" Stroke="#a4a4a4" StrokeThickness="1" Data="M0,0L4,4L0,8" >
+                                                                        <Path.RenderTransform>
+                                                                            <RotateTransform CenterX="2" CenterY="4" Angle="0" />
+                                                                        </Path.RenderTransform>
+                                                                    </Path>
+                                                                </Viewbox>
+                                                            </Grid>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsChecked" Value="True">
+                                                                    <Trigger.EnterActions>
+                                                                        <BeginStoryboard x:Name="TreeViewItemExpandAnimation">
+                                                                            <Storyboard Duration="0:0:0.5" AutoReverse="False">
+                                                                                <DoubleAnimation Storyboard.TargetName="ExpandPath" Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)" From="0" To="90" Duration="0:0:0.5" />
+                                                                            </Storyboard>
+                                                                        </BeginStoryboard>
+                                                                    </Trigger.EnterActions>
+                                                                    <Trigger.ExitActions>
+                                                                        <StopStoryboard BeginStoryboardName="TreeViewItemExpandAnimation" />
+                                                                    </Trigger.ExitActions>
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </ToggleButton.Style>
+                                    </ToggleButton>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsExpanded" Value="false">
+                                        <Setter TargetName="TreeViewItemsHost" Property="Visibility" Value="Collapsed"/>
+                                    </Trigger>
+                                    <Trigger Property="HasItems" Value="false">
+                                        <Setter TargetName="TreeViewExpander" Property="Visibility" Value="Hidden"/>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="true">
+                                        <Setter TargetName="TreeViewHeaderBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
+                                    </Trigger>
+                                    <MultiTrigger>
+                                        <MultiTrigger.Conditions>
+                                            <Condition Property="IsSelected" Value="true"/>
+                                            <Condition Property="IsSelectionActive" Value="false"/>
+                                        </MultiTrigger.Conditions>
+                                        <Setter TargetName="TreeViewHeaderBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                                        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                                    </MultiTrigger>
+                                    <Trigger Property="IsEnabled" Value="false">
+                                        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

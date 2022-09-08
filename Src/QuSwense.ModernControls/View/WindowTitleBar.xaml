@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="QuSwense.ModernControls.View.WindowTitleBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:lvw="clr-namespace:QuSwense.ModernControls.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="40" d:DesignWidth="800" Height="40">
+    <Border CornerRadius="10,10,0,0" BorderBrush="White" Padding="{Binding Path=CaptionButtonMargin}">
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                <GradientStop Color="#ffffff" Offset="0" />
+                <GradientStop Color="#f6f6f6" Offset="1" />
+            </LinearGradientBrush>
+        </Border.Background>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Image Width="35" Height="35" Source="/QuSwense.ModernControls;component/Images/QuSwenseTool-logo.png" Margin="10,0,0,0" />
+            <TextBlock Grid.Column="1" Text="Custom Chrome Sample" FontSize="16" Foreground="#FF000044" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+            <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Top">
+                <lvw:HelpButton />
+                <lvw:MinimizeButton />
+                <lvw:MaximizeButton />
+                <lvw:CloseButton />
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>
