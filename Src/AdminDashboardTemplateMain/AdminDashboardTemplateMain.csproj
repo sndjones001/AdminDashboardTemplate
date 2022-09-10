@@ -7,11 +7,27 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Images\" />
+    <None Remove="Images\icons8-combo-chart-50.png" />
+    <None Remove="Images\icons8-data-sheet-50.png" />
+    <None Remove="Images\icons8-home-24.png" />
+    <None Remove="Images\icons8-mail-24.png" />
+    <None Remove="Images\icons8-planner-24.png" />
+    <None Remove="Images\icons8-table-24.png" />
+    <None Remove="Images\icons8-tiles-24.png" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\QuSwense.ModernControls\QuSwense.ModernControls.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\icons8-combo-chart-50.png" />
+    <Resource Include="Images\icons8-data-sheet-50.png" />
+    <Resource Include="Images\icons8-home-24.png" />
+    <Resource Include="Images\icons8-mail-24.png" />
+    <Resource Include="Images\icons8-planner-24.png" />
+    <Resource Include="Images\icons8-table-24.png" />
+    <Resource Include="Images\icons8-tiles-24.png" />
   </ItemGroup>
 
 </Project>

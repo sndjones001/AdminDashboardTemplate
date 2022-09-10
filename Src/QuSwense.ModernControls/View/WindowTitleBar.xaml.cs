@@ -58,5 +58,11 @@ namespace QuSwense.ModernControls.View
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
         }
+
+        public event RoutedEventHandler HamburgerButton_Click;
+        private void OnHamburgerMenu_Click(object sender, RoutedEventArgs e)
+        {
+            HamburgerButton_Click?.Invoke(sender, e);
+        }
     }
 }

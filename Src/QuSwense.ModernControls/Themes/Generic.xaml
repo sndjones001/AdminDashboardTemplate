@@ -64,6 +64,7 @@
         <Setter Property="Height" Value="20" />
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
         <Setter Property="Template" Value="{StaticResource CaptionButtonTemplate}" />
+        <Setter Property="Cursor" Value="Hand" />
     </Style>
 
     <Style TargetType="{x:Type lvw:HelpButton}" BasedOn="{StaticResource CaptionButtonStyle}" x:Shared="False">
@@ -129,7 +130,12 @@
         <Setter Property="ItemTemplate">
             <Setter.Value>
                 <HierarchicalDataTemplate DataType="{x:Type models:MenuNode}" ItemsSource="{Binding ChildNodes}" >
-                    <TextBlock Text="{Binding Text}" />
+                    <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="Transparent" BorderThickness="0" Command="{Binding ClickCommand}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Image Source="{Binding IconSource}" Width="{Binding ImageSize}" Margin="{Binding ImageMargin}" />
+                            <TextBlock Text="{Binding Text}" Visibility="{Binding TextVisibility}" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
                 </HierarchicalDataTemplate>
             </Setter.Value>
         </Setter>
@@ -149,11 +155,11 @@
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
-                                    <Border x:Name="TreeViewHeaderBorder" Grid.Column="0" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
+                                    <Border x:Name="TreeViewHeaderBorder" Grid.Column="0" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" HorizontalAlignment="Stretch">
                                         <ContentPresenter x:Name="TreeViewHeaderBorder_PART_Header" ContentSource="Header" />
                                     </Border>
-                                    <ItemsPresenter x:Name="TreeViewItemsHost" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
-                                    <ToggleButton x:Name="TreeViewExpander" Grid.Column="1" IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press" Margin="2,2,0,10" >
+                                    <ItemsPresenter x:Name="TreeViewItemsHost" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" />
+                                    <ToggleButton x:Name="TreeViewExpander" Grid.Column="1" IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press" Margin="2" VerticalContentAlignment="Center" >
                                         <ToggleButton.Style>
                                             <Style TargetType="ToggleButton">
                                                 <Setter Property="Focusable" Value="False"/>
@@ -217,6 +223,22 @@
                         </Setter.Value>
                     </Setter>
                 </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type lvw:WindowIcon}">
+        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type lvw:WindowIcon}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Image Source="{TemplateBinding Source}" />
+                    </Border>
+                </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>

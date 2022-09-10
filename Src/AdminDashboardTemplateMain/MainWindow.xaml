@@ -16,22 +16,23 @@
             GlassFrameThickness="0">
         </WindowChrome>
     </WindowChrome.WindowChrome>
-    <Border BorderBrush="AliceBlue" BorderThickness="1">
+    <Border Background="White">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <quswenseCtrl:WindowTitleBar />
-            <Border Grid.Row="1" Background="White">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <quswenseCtrl:MenuSidebarTree />
-                </Grid>
-            </Border>
+            <quswenseCtrl:WindowTitleBar HamburgerButton_Click="OnWindowTitleBar_HamburgerButton_Click" />
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{Binding MenuSidebarTreeWidth}" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0" BorderThickness="0,0,1,0" BorderBrush="LightGray" >
+                    <quswenseCtrl:MenuSidebarTree x:Name="treeView" HeaderContentWidth="150" />
+                </Border>
+                <ContentControl Grid.Column="1" Content="{Binding SelectedViewModel}" />
+            </Grid>
         </Grid>
     </Border>
 </quswenseCtrl:CustomMainWindow>

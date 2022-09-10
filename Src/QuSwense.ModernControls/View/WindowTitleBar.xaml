@@ -6,7 +6,7 @@
              xmlns:lvw="clr-namespace:QuSwense.ModernControls.View"
              mc:Ignorable="d" 
              d:DesignHeight="40" d:DesignWidth="800" Height="40">
-    <Border CornerRadius="10,10,0,0" BorderBrush="White" Padding="{Binding Path=CaptionButtonMargin}">
+    <Border CornerRadius="10,10,0,0" BorderBrush="LightGray" Padding="{Binding Path=CaptionButtonMargin}" BorderThickness="0,0,0,1">
         <Border.Background>
             <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                 <GradientStop Color="#ffffff" Offset="0" />
@@ -16,13 +16,21 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Image Width="35" Height="35" Source="/QuSwense.ModernControls;component/Images/QuSwenseTool-logo.png" Margin="10,0,0,0" />
-            <TextBlock Grid.Column="1" Text="Custom Chrome Sample" FontSize="16" Foreground="#FF000044" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-
-            <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Top">
+            <Border BorderBrush="LightGray" BorderThickness="0,0,1,0">
+                <StackPanel Orientation="Horizontal" Width="210">
+                    <lvw:WindowIcon Width="32" Height="32" Source="/QuSwense.ModernControls;component/Images/QuSwenseTool-logo.png" Margin="10,0,5,0" />
+                    <TextBlock Text="QuSwense" VerticalAlignment="Center" Margin="5,0,10,0" />
+                </StackPanel>
+            </Border>
+            <Button Grid.Column="1" Background="Transparent" BorderThickness="0" Click="OnHamburgerMenu_Click">
+                <Image Source="/QuSwense.ModernControls;component/Images/hamburger.png" Width="30" Height="30" Margin="2,0,2,0" />
+            </Button>
+            <TextBlock Grid.Column="2" Text="Custom Chrome Sample" FontSize="16" Foreground="#FF000044" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Top">
                 <lvw:HelpButton />
                 <lvw:MinimizeButton />
                 <lvw:MaximizeButton />

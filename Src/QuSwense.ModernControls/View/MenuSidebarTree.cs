@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace QuSwense.ModernControls.View
         }
 
         public int ScrollViewerPadding { get; protected set; } = 4;
-        public int ItemContainerStyleGridMargin { get; protected set; } = 2;
+        public Thickness ItemContainerStyleGridMargin { get; protected set; } = new Thickness(2,2,2,2);
 
         public int HeaderContentWidth
         {
@@ -34,7 +35,6 @@ namespace QuSwense.ModernControls.View
         // Using a DependencyProperty as the backing store for HeaderContentWidth.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty HeaderContentWidthProperty =
             DependencyProperty.Register("HeaderContentWidth", typeof(int), typeof(MenuSidebarTree), new PropertyMetadata(0));
-
 
     }
 }
