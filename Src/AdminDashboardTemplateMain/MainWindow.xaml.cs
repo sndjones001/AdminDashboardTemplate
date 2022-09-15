@@ -1,14 +1,9 @@
 ﻿using AdminDashboardTemplateMain.ViewModel;
 using QuSwense.ModernControls.View;
 using QuSwense.ModernControls.ViewModel;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq.Expressions;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 
 namespace AdminDashboardTemplateMain
 {
@@ -71,19 +66,28 @@ namespace AdminDashboardTemplateMain
 
         void PopulateSideMenu()
         {
-            treeView.ItemsSource = new List<MenuNode>
-            {
-                new MenuNode{ Text = "Dashboard", IconPath = @"pack://application:,,,/AdminDashboardTemplateMain;component/Images/icons8-home-24.png", ClickCommand = OnDashboardMenuClick },
-                new MenuNode{ Text = "Email", IconPath = @"pack://application:,,,/AdminDashboardTemplateMain;component/Images/icons8-mail-24.png", ClickCommand = OnEmailMenuClick },
-                new MenuNode{ Text = "Calendar", IconPath = @"pack://application:,,,/AdminDashboardTemplateMain;component/Images/icons8-planner-24.png" },
-                new MenuNode{ Text = "Charts", IconPath = @"pack://application:,,,/AdminDashboardTemplateMain;component/Images/icons8-combo-chart-50.png" },
-                new MenuNode{ Text = "Tables", IconPath = @"pack://application:,,,/AdminDashboardTemplateMain;component/Images/icons8-tiles-24.png",
-                ChildNodes = new List<MenuNode>
-                {
-                    new MenuNode{ Text = "Basic Tables", IconPath = @"pack://application:,,,/AdminDashboardTemplateMain;component/Images/icons8-table-24.png" },
-                    new MenuNode{ Text = "Data Tables", IconPath = @"pack://application:,,,/AdminDashboardTemplateMain;component/Images/icons8-data-sheet-50.png" }
-                } }
-            };
+            UIMenuNodeItemVMSettings settings = new UIMenuNodeItemVMSettings(nameof(AdminDashboardTemplateMain), "Images");
+            var uiSidebarMenus = UIMenuNodeItemVM.CreateDummy()
+                .AddChild
+                (
+                    UIMenuNodeItemVM.Create("Dashboard", "icons8-home-24.png", OnDashboardMenuClick, settings),
+                    UIMenuNodeItemVM.Create("Email", "icons8-mail-24.png", OnDashboardMenuClick, settings),
+                    UIMenuNodeItemVM.Create("Calendar", "icons8-planner-24.png", OnDashboardMenuClick, settings),
+                    UIMenuNodeItemVM.Create("Charts", "icons8-combo-chart-50.png", OnDashboardMenuClick, settings),
+                    UIMenuNodeItemVM.Create("Tables", "icons8-tiles-24.png", OnDashboardMenuClick, settings)
+                        .AddChild
+                        (
+                            UIMenuNodeItemVM.Create("Basic Tables", "icons8-table-24.png", OnDashboardMenuClick, settings),
+                            UIMenuNodeItemVM.Create("Data Tables", "icons8-data-sheet-50.png", OnDashboardMenuClick, settings)
+                            .AddChild
+                            (
+                                UIMenuNodeItemVM.Create("Chart Tables", "icons8-table-24.png", OnDashboardMenuClick, settings),
+                                UIMenuNodeItemVM.Create("Excel Tables", "icons8-data-sheet-50.png", OnDashboardMenuClick, settings)
+                            )
+                        )
+                );
+
+            treeView.ItemsSource = uiSidebarMenus.ChildNodes;
         }
 
         private void OnDashboardMenuClick()

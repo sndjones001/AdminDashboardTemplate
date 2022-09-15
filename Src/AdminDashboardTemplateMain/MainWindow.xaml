@@ -29,7 +29,8 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Border Grid.Column="0" BorderThickness="0,0,1,0" BorderBrush="LightGray" >
-                    <quswenseCtrl:MenuSidebarTree x:Name="treeView" HeaderContentWidth="150" />
+                    <quswenseCtrl:MenuSidebarTree x:Name="treeView" HeaderContentWidth="150" ItemContainerStyleGridMargin="5" 
+                    ItemClickCommand="" MenuItemBackground="AliceBlue"/>
                 </Border>
                 <ContentControl Grid.Column="1" Content="{Binding SelectedViewModel}" />
             </Grid>
