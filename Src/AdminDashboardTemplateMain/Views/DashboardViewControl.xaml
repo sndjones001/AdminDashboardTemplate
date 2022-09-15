@@ -4,9 +4,37 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AdminDashboardTemplateMain.Views"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock Text="Dashbard" />
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="#f9fafb">
+    <Grid Margin="8" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="0" Grid.Row="0" Margin="5">
+            <local:CardView HorizontalAlignment="Stretch" />
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="0" Margin="5">
+            <local:CardView HorizontalAlignment="Stretch" />
+        </Grid>
+        <Grid Grid.Column="2" Grid.Row="0" Margin="5">
+            <local:CardView HorizontalAlignment="Stretch" />
+        </Grid>
+        <Grid Grid.Column="3" Grid.Row="0" Margin="5">
+            <local:CardView HorizontalAlignment="Stretch" />
+        </Grid>
+        <Grid Grid.Column="0" Grid.Row="1" Margin="5">
+            <lvc:GeoMap HeatMap="{Binding Values}" Source="D:\SubhadeepNiogi\GIthubProjects\sndjones001\AdminDashboardTemplate\Src\AdminDashboardTemplateMain\Maps\World.xml" LanguagePack="{Binding LanguagePack}" />
+        </Grid>
     </Grid>
 </UserControl>

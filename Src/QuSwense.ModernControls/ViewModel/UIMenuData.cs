@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media.Imaging;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 using System.Windows;
 
 namespace QuSwense.ModernControls.ViewModel
@@ -46,6 +40,7 @@ namespace QuSwense.ModernControls.ViewModel
         public Brush MenuItemBackground { get; set; }
         public Brush MenuItemMouseOverBackground { get; set; }
         #endregion
+
 
         #region Constructors
         /// <summary>

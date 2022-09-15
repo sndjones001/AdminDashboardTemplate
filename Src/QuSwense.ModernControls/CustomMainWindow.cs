@@ -134,9 +134,9 @@ namespace QuSwense.ModernControls
 
         // Using a DependencyProperty as the backing store for ResizeBorderThickness.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ResizeBorderThicknessProperty =
-            DependencyProperty.Register("ResizeBorderThickness", typeof(Thickness), typeof(CustomMainWindow), new PropertyMetadata(new Thickness(_resizeBorderAroundWindow), null, null));
+            DependencyProperty.Register("ResizeBorderThickness", typeof(Thickness), typeof(CustomMainWindow), new PropertyMetadata(new Thickness(_resizeBorderAroundWindow), null, OnResizeBorderThicknessCoerced));
 
-        private static object OResizeBorderThicknessCoerced(DependencyObject d, object baseValue)
+        private static object OnResizeBorderThicknessCoerced(DependencyObject d, object baseValue)
         {
             var window = (CustomMainWindow)d;
             return new Thickness(_resizeBorderAroundWindow + window.OuterMarginSize.Left,

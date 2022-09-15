@@ -49,6 +49,7 @@
         <Setter Property="ItemContainerStyle">
             <Setter.Value>
                 <Style TargetType="TreeViewItem">
+                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type TreeViewItem}">
@@ -119,17 +120,9 @@
                                         <Setter TargetName="TreeViewExpander" Property="Visibility" Value="Hidden"/>
                                     </Trigger>
                                     <Trigger Property="IsSelected" Value="true">
-                                        <Setter TargetName="TreeViewItemHeader" Property="Background" Value="{Binding Path=MenuItemMouseOverBackground, RelativeSource={RelativeSource FindAncestor ,AncestorType={x:Type lvw:MenuSidebarTree}}}"/>
+                                        <Setter TargetName="TreeViewHeaderBorder" Property="Background" Value="{Binding Path=Data.MenuItemMouseOverBackground}"/>
                                         <Setter Property="Foreground" Value="{Binding Path=MenuItemMouseOverForeground, RelativeSource={RelativeSource FindAncestor ,AncestorType={x:Type lvw:MenuSidebarTree}}}"/>
                                     </Trigger>
-                                    <MultiTrigger>
-                                        <MultiTrigger.Conditions>
-                                            <Condition Property="IsSelected" Value="true"/>
-                                            <Condition Property="IsSelectionActive" Value="false"/>
-                                        </MultiTrigger.Conditions>
-                                        <Setter TargetName="TreeViewHeaderBorder" Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
-                                        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-                                    </MultiTrigger>
                                     <Trigger Property="IsEnabled" Value="false">
                                         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
                                     </Trigger>

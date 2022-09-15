@@ -1,7 +1,6 @@
 ﻿using AdminDashboardTemplateMain.ViewModel;
 using QuSwense.ModernControls.View;
 using QuSwense.ModernControls.ViewModel;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 
@@ -70,7 +69,7 @@ namespace AdminDashboardTemplateMain
             var uiSidebarMenus = UIMenuNodeItemVM.CreateDummy()
                 .AddChild
                 (
-                    UIMenuNodeItemVM.Create("Dashboard", "icons8-home-24.png", OnDashboardMenuClick, settings),
+                    UIMenuNodeItemVM.Create("Dashboard", "icons8-home-24.png", OnDashboardMenuClick, settings, true),
                     UIMenuNodeItemVM.Create("Email", "icons8-mail-24.png", OnDashboardMenuClick, settings),
                     UIMenuNodeItemVM.Create("Calendar", "icons8-planner-24.png", OnDashboardMenuClick, settings),
                     UIMenuNodeItemVM.Create("Charts", "icons8-combo-chart-50.png", OnDashboardMenuClick, settings),

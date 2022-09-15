@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Windows;
+﻿using System.Collections.Generic;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using QuSwense.ModernControls.View;
 
 namespace QuSwense.ModernControls.ViewModel
@@ -23,5 +18,19 @@ namespace QuSwense.ModernControls.ViewModel
         public ITItem Data { get; set; }
 
         public ICommand ClickCommand { get; set; }
+
+        private bool _isSelected;
+        public bool IsSelected
+        {
+            get { return _isSelected; }
+            set
+            {
+                if (_isSelected != value)
+                {
+                    _isSelected = value;
+                    NotifyPropertyChanged("IsSelected");
+                }
+            }
+        }
     }
 }

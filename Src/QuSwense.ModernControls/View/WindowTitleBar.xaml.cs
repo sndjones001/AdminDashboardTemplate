@@ -11,6 +11,7 @@ namespace QuSwense.ModernControls.View
     public partial class WindowTitleBar : UserControl, INotifyPropertyChanged
     {
         private Window _parentWindow;
+        public Window GetWindow() => _parentWindow = _parentWindow ?? Window.GetWindow(this);
 
         public WindowTitleBar()
         {
@@ -27,10 +28,8 @@ namespace QuSwense.ModernControls.View
 
         private void Initialize()
         {
-            _parentWindow = Window.GetWindow(this);
-
-            if(_parentWindow != null)
-                _parentWindow.StateChanged += ParentWindow_StateChanged;
+            if(GetWindow() != null)
+                GetWindow().StateChanged += ParentWindow_StateChanged;
         }
 
         private void ParentWindow_StateChanged(object sender, EventArgs e)
@@ -42,7 +41,7 @@ namespace QuSwense.ModernControls.View
         {
             get
             {
-                if (_parentWindow != null && _parentWindow.WindowState == WindowState.Maximized)
+                if (GetWindow() != null && GetWindow().WindowState == WindowState.Maximized)
                     return new Thickness(6, 6, 0, 0);
                 else
                     return new Thickness(0, 0, 0, 0);

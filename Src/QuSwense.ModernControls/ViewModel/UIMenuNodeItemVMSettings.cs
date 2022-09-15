@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Media;
 
 namespace QuSwense.ModernControls.ViewModel
@@ -25,7 +20,7 @@ namespace QuSwense.ModernControls.ViewModel
             DefaultMenuIconMargin = new Thickness(4, 0, 15, 0);
             DefaultMenuContainerMargin = new Thickness(1);
             DefaultMenuItemBackground = new SolidColorBrush(Colors.Transparent);
-            DefaultMenuItemMouseOverBackground = new SolidColorBrush(Colors.Transparent);
+            DefaultMenuItemMouseOverBackground = new SolidColorBrush(Colors.LightGray);
             ImageBuilder = new BitmapImageBuilder(assemblyName, baseImagePath);
         }
     }

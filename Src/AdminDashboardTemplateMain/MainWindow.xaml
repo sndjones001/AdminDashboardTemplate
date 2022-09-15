@@ -7,7 +7,8 @@
         xmlns:local="clr-namespace:AdminDashboardTemplateMain"
         xmlns:quswenseCtrl="clr-namespace:QuSwense.ModernControls.View;assembly=QuSwense.ModernControls"
         mc:Ignorable="d" Title="MainWindow"
-        Height="450" Width="800">
+        Height="450" Width="800"
+    WindowState="Maximized">
     <WindowChrome.WindowChrome>
         <WindowChrome
             ResizeBorderThickness="6"
