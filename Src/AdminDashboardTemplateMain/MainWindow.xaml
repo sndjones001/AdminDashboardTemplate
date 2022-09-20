@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AdminDashboardTemplateMain"
-        xmlns:quswenseCtrl="clr-namespace:QuSwense.ModernControls.View;assembly=QuSwense.ModernControls"
+        xmlns:quswenseCtrl="http://quswense.com/wpfmoderncontrols/2022/xaml"
         mc:Ignorable="d" Title="MainWindow"
         Height="450" Width="800"
     WindowState="Maximized">
@@ -30,8 +30,8 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Border Grid.Column="0" BorderThickness="0,0,1,0" BorderBrush="LightGray" >
-                    <quswenseCtrl:MenuSidebarTree x:Name="treeView" HeaderContentWidth="150" ItemContainerStyleGridMargin="5" 
-                    ItemClickCommand="" MenuItemBackground="AliceBlue"/>
+                    <quswenseCtrl:MenuSidebarTree x:Name="treeView" HeaderContentWidth="150" TreeViewSubItemMargin="10" 
+                    ItemClickCommand="" Margin="10" ScrollViewerPadding="5"  MenuItemBackground="AliceBlue"/>
                 </Border>
                 <ContentControl Grid.Column="1" Content="{Binding SelectedViewModel}" />
             </Grid>

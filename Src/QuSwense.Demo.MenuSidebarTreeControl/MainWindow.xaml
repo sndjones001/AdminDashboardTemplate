@@ -1,0 +1,31 @@
+﻿<Window x:Class="QuSwense.Demo.MenuSidebarTreeControl.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:quswenseCtrl="http://quswense.com/wpfmoderncontrols/2022/xaml"
+        xmlns:local="clr-namespace:QuSwense.Demo.MenuSidebarTreeControl"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <quswenseCtrl:MenuSidebarTree x:Name="treeView" HeaderContentWidth="200" TreeViewSubItemMargin="10" 
+                    ItemClickCommand="" Margin="10" ScrollViewerPadding="5"  MenuItemBackground="AliceBlue"
+                                      MenuItemHeight="20"
+          SelectedItemChanged="treeView_SelectedItemChanged"
+                                      />
+        <!--<quswenseCtrl:ExpandCollapseButton x:Name="MenuSidebarExpanderToggleButton" Grid.Column="1" IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" Background="Transparent" Height="30" Width="30"  ArrowLineCap="Round" ArrowLineJoin="Round" ArrowStartType="Right" >
+            <quswenseCtrl:ExpandCollapseButton.Style>
+                <Style TargetType="quswenseCtrl:ExpandCollapseButton" >
+                    <Setter Property="Focusable" Value="False"/>
+                </Style>
+            </quswenseCtrl:ExpandCollapseButton.Style>
+        </quswenseCtrl:ExpandCollapseButton>-->
+    </Grid>
+</Window>

@@ -5,9 +5,7 @@
                     xmlns:vmodel="clr-namespace:AdminDashboardTemplateMain.ViewModel">
     <Style TargetType="local:MainWindow">
         <Setter Property="FontFamily" Value="Cambria" />
-    </Style>
-    <Style TargetType="Control">
-        <Setter Property="FontFamily" Value="Cambria" />
+        <Setter Property="FontSize" Value="16" />
     </Style>
 
     <DataTemplate DataType="{x:Type vmodel:DashboardViewModel}">

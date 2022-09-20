@@ -8,11 +8,15 @@ namespace QuSwense.ModernControls.Themes
     {
         private void TreeViewItem_Click(object sender, MouseButtonEventArgs e)
         {
-            var menuSidebarTreeStackPanel = sender as StackPanel;
-            var menuSidebarTreeStackPanelClickCommand = AttachClickCommand.GetClickCommand(menuSidebarTreeStackPanel);
-            var nodeItemVm = AttachClickCommand.GetNodeItemVM(menuSidebarTreeStackPanel);
+            var menuSidebarTreeStackPanel = sender as Border;
+            var nodeItemVm = TreeViewItemAttachProperty.GetNodeItemVM(menuSidebarTreeStackPanel);
+            var expandCollapseButton = TreeViewItemAttachProperty.GetExpandCollapseButton(menuSidebarTreeStackPanel);
+            var hasItemsTreeViewItem = TreeViewItemAttachProperty.GetHasItemsTreeViewItem(menuSidebarTreeStackPanel);
 
-            //nodeItemVm.IsSelected = true;
+            if(hasItemsTreeViewItem)
+                expandCollapseButton.IsChecked = !expandCollapseButton.IsChecked;
+
+            nodeItemVm.ClickCommand?.Execute(null);
         }
     }
 }

@@ -95,6 +95,16 @@ namespace QuSwense.ModernControls.View
         public static readonly DependencyProperty ItemClickCommandProperty =
             DependencyProperty.Register("ItemClickCommand", typeof(ICommand), typeof(MenuSidebarTree), new UIPropertyMetadata(null));
 
-        
+        public double MenuItemHeight
+        {
+            get { return (double)GetValue(MenuItemHeightProperty); }
+            set { SetValue(MenuItemHeightProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MenuItemHeight.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MenuItemHeightProperty =
+            DependencyProperty.Register("MenuItemHeight", typeof(double), typeof(MenuSidebarTree), new PropertyMetadata(20.0));
+
+
     }
 }

@@ -5,9 +5,10 @@
     mc:Ignorable="d">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/QuSwense.ModernControls;component/Themes/CustomMainWindow.xaml" />
-        <ResourceDictionary Source="/QuSwense.ModernControls;component/Themes/CaptionButton.xaml" />
-        <ResourceDictionary Source="/QuSwense.ModernControls;component/Themes/MenuSidebarTree.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/QuSwense.ModernControls;component/ExpanderCollapseButton/ExpandCollapseButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/QuSwense.ModernControls;component/Themes/CustomMainWindow.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/QuSwense.ModernControls;component/Themes/CaptionButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/QuSwense.ModernControls;component/SidebarMenu/MenuSidebarTree.xaml" />
     </ResourceDictionary.MergedDictionaries>
     
 </ResourceDictionary>

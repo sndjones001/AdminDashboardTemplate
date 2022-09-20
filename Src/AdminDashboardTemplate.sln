@@ -12,6 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{54FF1980
 		AddCopyrightHeader.ps1 = AddCopyrightHeader.ps1
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demo", "Demo", "{DAA78F55-A57F-4D1B-9D09-58E83A913537}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuSwense.Demo.MenuSidebarTreeControl", "QuSwense.Demo.MenuSidebarTreeControl\QuSwense.Demo.MenuSidebarTreeControl.csproj", "{F7CED26E-71E2-426D-BDE1-8C13B77878D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,9 +30,16 @@ Global
 		{CC150D47-7BDE-4C1C-AF4B-50E2166819D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC150D47-7BDE-4C1C-AF4B-50E2166819D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC150D47-7BDE-4C1C-AF4B-50E2166819D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7CED26E-71E2-426D-BDE1-8C13B77878D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7CED26E-71E2-426D-BDE1-8C13B77878D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7CED26E-71E2-426D-BDE1-8C13B77878D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7CED26E-71E2-426D-BDE1-8C13B77878D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F7CED26E-71E2-426D-BDE1-8C13B77878D9} = {DAA78F55-A57F-4D1B-9D09-58E83A913537}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0A7FAE73-EA93-4B93-AC9F-88EB9D62B241}

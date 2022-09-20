@@ -3,6 +3,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
@@ -14,7 +15,6 @@
     <None Remove="Images\icons8-planner-24.png" />
     <None Remove="Images\icons8-table-24.png" />
     <None Remove="Images\icons8-tiles-24.png" />
-    <None Remove="Maps\World.xml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,9 +29,6 @@
     <Resource Include="Images\icons8-planner-24.png" />
     <Resource Include="Images\icons8-table-24.png" />
     <Resource Include="Images\icons8-tiles-24.png" />
-    <Content Include="Maps\World.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
 </Project>

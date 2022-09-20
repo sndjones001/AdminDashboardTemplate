@@ -18,7 +18,7 @@ namespace QuSwense.ModernControls.ViewModel
             DefaultTextVisibility = Visibility.Visible;
             DefaultMenuIconSize = 20.0;
             DefaultMenuIconMargin = new Thickness(4, 0, 15, 0);
-            DefaultMenuContainerMargin = new Thickness(1);
+            DefaultMenuContainerMargin = new Thickness(0);
             DefaultMenuItemBackground = new SolidColorBrush(Colors.Transparent);
             DefaultMenuItemMouseOverBackground = new SolidColorBrush(Colors.LightGray);
             ImageBuilder = new BitmapImageBuilder(assemblyName, baseImagePath);
