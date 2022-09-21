@@ -7,14 +7,14 @@ namespace QuSwense.ModernControls.ViewModel
     {
         public static UIMenuNodeItemVM CreateDummy() => new UIMenuNodeItemVM();
 
-        public static UIMenuNodeItemVM Create(string menuText, string menuImage, Action command = null, UIMenuNodeItemVMSettings settings = null, bool isSelected = false)
+        public static UIMenuNodeItemVM Create(string menuText, string menuImage, Action command = null, UIMenuNodeItemVMSettings settings = null, bool isSelected = false, string tooltip = null)
         {
             if (settings == null)
                 settings = new UIMenuNodeItemVMSettings(string.Empty, string.Empty);
 
             return new UIMenuNodeItemVM
             {
-                Data = new UIMenuData(menuText, settings.DefaultTextVisibility, settings.ImageBuilder?.GetImage(menuImage), settings.DefaultMenuIconSize, settings.DefaultMenuIconMargin, settings.DefaultMenuContainerMargin, settings.DefaultMenuItemBackground, settings.DefaultMenuItemMouseOverBackground),
+                Data = new UIMenuData(menuText, settings.DefaultTextVisibility, settings.ImageBuilder?.GetImage(menuImage), settings.DefaultMenuIconSize, settings.DefaultMenuIconMargin, settings.DefaultMenuContainerMargin, settings.DefaultMenuItemBackground, settings.DefaultMenuItemMouseOverBackground, tooltip),
                 ClickCommand = new RelayCommand(command),
                 IsSelected = isSelected
             };

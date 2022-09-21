@@ -1,24 +1,41 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     x:Class="QuSwense.ModernControls.Themes.MenuSidebarTreeResourceDictionary"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:QuSwense.ModernControls"
                     xmlns:lvw="clr-namespace:QuSwense.ModernControls.View"
                     xmlns:models="clr-namespace:QuSwense.ModernControls.ViewModel">
 
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/QuSwense.ModernControls;component/Themes/StaticDictionary.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/QuSwense.ModernControls;component/Tooltip/TooltipControl.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
     <ControlTemplate x:Key="MenuSidebarTreeControlTemplate" TargetType="{x:Type lvw:MenuSidebarTree}">
-        <ScrollViewer Focusable="False" CanContentScroll="False" VerticalScrollBarVisibility="Auto" Padding="{Binding Path=ScrollViewerPadding, RelativeSource={RelativeSource TemplatedParent}}">
+        <ScrollViewer Focusable="False" CanContentScroll="False" 
+                      Margin="{TemplateBinding Margin}" Padding="{TemplateBinding Padding}" 
+                      Background="{TemplateBinding Background}" Foreground="{TemplateBinding Foreground}" 
+                      VerticalAlignment="{TemplateBinding VerticalAlignment}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                      BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                      FlowDirection="LeftToRight"
+                      FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontStretch="{TemplateBinding FontStretch}" FontWeight="{TemplateBinding FontWeight}"
+                      Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"
+                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" 
+                      HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <ItemsPresenter />
         </ScrollViewer>
     </ControlTemplate>
 
     <HierarchicalDataTemplate x:Key="MenuSidebarTreeHierarchicalDataTemplate" DataType="{x:Type models:UIMenuNodeItemVM}" ItemsSource="{Binding ChildNodes}" >
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="{Binding Path=Data.MenuContainerMargin}" Height="40">
-            <Image Source="{Binding Path=Data.MenuIconSource}" Width="{Binding Path=Data.MenuIconSize}" Margin="{Binding Path=Data.MenuIconMargin}" />
-            <TextBlock Text="{Binding Path=Data.Text}" Visibility="{Binding Path=Data.TextVisibility}" VerticalAlignment="Center" Margin="5" />
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Stretch"  >
+            <Image Source="{Binding Path=Data.MenuIconSource}"
+                   Width="{Binding Path=ItemIconSize, RelativeSource={RelativeSource FindAncestor ,AncestorType={x:Type lvw:MenuSidebarTreeItem},AncestorLevel=1}}" />
+            <TextBlock Text="{Binding Path=Data.Text}" Visibility="{Binding Path=Data.TextVisibility}" VerticalAlignment="Center"
+                       Padding="{Binding Path=ItemTextPadding, RelativeSource={RelativeSource FindAncestor ,AncestorType={x:Type lvw:MenuSidebarTreeItem},AncestorLevel=1}}" />
         </StackPanel>
     </HierarchicalDataTemplate>
 
-    <ControlTemplate x:Key="TreeViewItemControlTemplate" TargetType="{x:Type TreeViewItem}">
-        <Grid x:Name="TreeViewItemHeader" Margin="{Binding Path=ItemContainerStyleGridMargin, RelativeSource={RelativeSource FindAncestor ,AncestorType={x:Type lvw:MenuSidebarTree}}}" Background="{Binding Path=Data.MenuItemBackground}" Cursor="Hand" >
+    <ControlTemplate x:Key="TreeViewItemControlTemplate" TargetType="{x:Type lvw:MenuSidebarTreeItem}">
+        <Grid x:Name="TreeViewItemHeader" Margin="{Binding Path=ItemContainerStyleGridMargin, RelativeSource={RelativeSource FindAncestor ,AncestorType={x:Type lvw:MenuSidebarTreeItem},AncestorLevel=1}}" Background="{Binding Path=Data.MenuItemBackground}" Cursor="Hand" ToolTip="{Binding Path=Data.Tooltip}">
             <Grid.Style>
                 <Style TargetType="Grid" >
                     <Style.Triggers>
@@ -52,7 +69,7 @@
                     </lvw:ExpandCollapseButton>
                 </Grid>
             </Border>
-            <ItemsPresenter x:Name="TreeViewItemsHost" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="{Binding Path=TreeViewSubItemMargin, RelativeSource={RelativeSource FindAncestor ,AncestorType={x:Type lvw:MenuSidebarTree}}}" />
+            <ItemsPresenter x:Name="TreeViewItemsHost" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="{Binding Path=TreeViewSubItemMargin, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type lvw:MenuSidebarTree}, AncestorLevel=1}}" />
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsExpanded" Value="false">
@@ -64,7 +81,7 @@
             <Trigger Property="IsSelected" Value="true">
                 <Setter TargetName="TreeViewHeaderBorder" Property="Background" Value="{Binding Path=Data.MenuItemMouseOverBackground}"/>
                 <Setter TargetName="TreeViewExpander" Property="Background" Value="{Binding Path=Data.MenuItemMouseOverBackground}"/>
-                <Setter Property="Foreground" Value="{Binding Path=MenuItemMouseOverForeground, RelativeSource={RelativeSource FindAncestor ,AncestorType={x:Type lvw:MenuSidebarTree}}}"/>
+                <Setter Property="Foreground" Value="{Binding Path=Data.MenuItemMouseOverForeground}"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>

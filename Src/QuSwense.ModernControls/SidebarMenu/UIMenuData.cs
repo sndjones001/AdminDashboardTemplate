@@ -41,6 +41,7 @@ namespace QuSwense.ModernControls.ViewModel
         public Brush MenuItemMouseOverBackground { get; set; }
         #endregion
 
+        public string Tooltip { get; set; }
 
         #region Constructors
         /// <summary>
@@ -48,7 +49,7 @@ namespace QuSwense.ModernControls.ViewModel
         /// </summary>
         /// <param name="text"></param>
         /// <param name="menuIconPath"></param>
-        public UIMenuData(string text, Visibility textVisibility, ImageSource menuIcon, double imageSize, Thickness imageMargin, Thickness menuContainerMargin, Brush menuItemBackground, Brush menuItemMouseOverBackground)
+        public UIMenuData(string text, Visibility textVisibility, ImageSource menuIcon, double imageSize, Thickness imageMargin, Thickness menuContainerMargin, Brush menuItemBackground, Brush menuItemMouseOverBackground, string tooltip)
         {
             Text = text;
             TextVisibility = textVisibility;
@@ -58,6 +59,7 @@ namespace QuSwense.ModernControls.ViewModel
             MenuContainerMargin = menuContainerMargin;
             MenuItemBackground = menuItemBackground;
             MenuItemMouseOverBackground = menuItemMouseOverBackground;
+            Tooltip = tooltip ?? text;
         }
         #endregion
     }

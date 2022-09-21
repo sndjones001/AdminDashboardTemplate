@@ -12,26 +12,17 @@ namespace QuSwense.ModernControls.View
             DefaultStyleKeyProperty.OverrideMetadata(typeof(MenuSidebarTree), new FrameworkPropertyMetadata(typeof(MenuSidebarTree)));
         }
 
-        public Thickness ScrollViewerPadding
+        protected override DependencyObject GetContainerForItemOverride()
         {
-            get { return (Thickness)GetValue(ScrollViewerPaddingProperty); }
-            set { SetValue(ScrollViewerPaddingProperty, value); }
+            return new MenuSidebarTreeItem();
         }
 
-        // Using a DependencyProperty as the backing store for ScrollViewerPadding.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ScrollViewerPaddingProperty =
-            DependencyProperty.Register("ScrollViewerPadding", typeof(Thickness), typeof(MenuSidebarTree), new PropertyMetadata(new Thickness(0)));
-
-
-        public Thickness ItemContainerStyleGridMargin
+        protected override bool IsItemItsOwnContainerOverride(object item)
         {
-            get { return (Thickness)GetValue(ItemContainerStyleGridMarginProperty); }
-            set { SetValue(ItemContainerStyleGridMarginProperty, value); }
+            return item is MenuSidebarTreeItem;
         }
 
-        // Using a DependencyProperty as the backing store for ItemContainerStyleGridMargin.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ItemContainerStyleGridMarginProperty =
-            DependencyProperty.Register("ItemContainerStyleGridMargin", typeof(Thickness), typeof(MenuSidebarTree), new PropertyMetadata(new Thickness(2)));
+        
 
         public int HeaderContentWidth
         {
@@ -83,7 +74,7 @@ namespace QuSwense.ModernControls.View
 
         // Using a DependencyProperty as the backing store for TreeViewSubItemMargin.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TreeViewSubItemMarginProperty =
-            DependencyProperty.Register("TreeViewSubItemMargin", typeof(Thickness), typeof(MenuSidebarTree), new PropertyMetadata(new Thickness(8,0,0,0)));
+            DependencyProperty.Register("TreeViewSubItemMargin", typeof(Thickness), typeof(MenuSidebarTree), new PropertyMetadata(new Thickness(20,0,0,0)));
 
         public ICommand ItemClickCommand
         {

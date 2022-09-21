@@ -15,11 +15,7 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <quswenseCtrl:MenuSidebarTree x:Name="treeView" HeaderContentWidth="200" TreeViewSubItemMargin="10" 
-                    ItemClickCommand="" Margin="10" ScrollViewerPadding="5"  MenuItemBackground="AliceBlue"
-                                      MenuItemHeight="20"
-          SelectedItemChanged="treeView_SelectedItemChanged"
-                                      />
+        <quswenseCtrl:MenuSidebarTree x:Name="treeView" HeaderContentWidth="200"  ItemClickCommand="" Margin="10" MenuItemBackground="AliceBlue" MenuItemHeight="20" SelectedItemChanged="treeView_SelectedItemChanged" Background="AliceBlue" />
         <!--<quswenseCtrl:ExpandCollapseButton x:Name="MenuSidebarExpanderToggleButton" Grid.Column="1" IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" Background="Transparent" Height="30" Width="30"  ArrowLineCap="Round" ArrowLineJoin="Round" ArrowStartType="Right" >
             <quswenseCtrl:ExpandCollapseButton.Style>
                 <Style TargetType="quswenseCtrl:ExpandCollapseButton" >
