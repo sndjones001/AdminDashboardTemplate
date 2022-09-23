@@ -65,28 +65,28 @@ namespace AdminDashboardTemplateMain
 
         void PopulateSideMenu()
         {
-            UIMenuNodeItemVMSettings settings = new UIMenuNodeItemVMSettings(nameof(AdminDashboardTemplateMain), "Images");
-            var uiSidebarMenus = UIMenuNodeItemVM.CreateDummy()
-                .AddChild
-                (
-                    UIMenuNodeItemVM.Create("Dashboard", "icons8-home-24.png", OnDashboardMenuClick, settings, true),
-                    UIMenuNodeItemVM.Create("Email", "icons8-mail-24.png", OnDashboardMenuClick, settings),
-                    UIMenuNodeItemVM.Create("Calendar", "icons8-planner-24.png", OnDashboardMenuClick, settings),
-                    UIMenuNodeItemVM.Create("Charts", "icons8-combo-chart-50.png", OnDashboardMenuClick, settings),
-                    UIMenuNodeItemVM.Create("Tables", "icons8-tiles-24.png", OnDashboardMenuClick, settings)
-                        .AddChild
-                        (
-                            UIMenuNodeItemVM.Create("Basic Tables", "icons8-table-24.png", OnDashboardMenuClick, settings),
-                            UIMenuNodeItemVM.Create("Data Tables", "icons8-data-sheet-50.png", OnDashboardMenuClick, settings)
-                            .AddChild
-                            (
-                                UIMenuNodeItemVM.Create("Chart Tables", "icons8-table-24.png", OnDashboardMenuClick, settings),
-                                UIMenuNodeItemVM.Create("Excel Tables", "icons8-data-sheet-50.png", OnDashboardMenuClick, settings)
-                            )
-                        )
-                );
+            //MenuSidebarItemViewModelSettings settings = new MenuSidebarItemViewModelSettings(nameof(AdminDashboardTemplateMain), "Images");
+            //var uiSidebarMenus = UIMenuNodeItemVM.CreateDummy()
+            //    .AddChild
+            //    (
+            //        UIMenuNodeItemVM.Create("Dashboard", "icons8-home-24.png", OnDashboardMenuClick, settings, true),
+            //        UIMenuNodeItemVM.Create("Email", "icons8-mail-24.png", OnDashboardMenuClick, settings),
+            //        UIMenuNodeItemVM.Create("Calendar", "icons8-planner-24.png", OnDashboardMenuClick, settings),
+            //        UIMenuNodeItemVM.Create("Charts", "icons8-combo-chart-50.png", OnDashboardMenuClick, settings),
+            //        UIMenuNodeItemVM.Create("Tables", "icons8-tiles-24.png", OnDashboardMenuClick, settings)
+            //            .AddChild
+            //            (
+            //                UIMenuNodeItemVM.Create("Basic Tables", "icons8-table-24.png", OnDashboardMenuClick, settings),
+            //                UIMenuNodeItemVM.Create("Data Tables", "icons8-data-sheet-50.png", OnDashboardMenuClick, settings)
+            //                .AddChild
+            //                (
+            //                    UIMenuNodeItemVM.Create("Chart Tables", "icons8-table-24.png", OnDashboardMenuClick, settings),
+            //                    UIMenuNodeItemVM.Create("Excel Tables", "icons8-data-sheet-50.png", OnDashboardMenuClick, settings)
+            //                )
+            //            )
+            //    );
 
-            treeView.ItemsSource = uiSidebarMenus.ChildNodes;
+            //treeView.ItemsSource = uiSidebarMenus.ChildNodes;
         }
 
         private void OnDashboardMenuClick()

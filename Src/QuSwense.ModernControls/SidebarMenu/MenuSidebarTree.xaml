@@ -25,22 +25,22 @@
         </ScrollViewer>
     </ControlTemplate>
 
-    <HierarchicalDataTemplate x:Key="MenuSidebarTreeHierarchicalDataTemplate" DataType="{x:Type models:UIMenuNodeItemVM}" ItemsSource="{Binding ChildNodes}" >
+    <HierarchicalDataTemplate x:Key="MenuSidebarTreeItemHierarchicalDataTemplate" DataType="{x:Type models:MenuSidebarItemViewModel}" ItemsSource="{Binding ChildNodes}" >
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Stretch"  >
-            <Image Source="{Binding Path=Data.MenuIconSource}"
-                   Width="{Binding Path=ItemIconSize, RelativeSource={RelativeSource FindAncestor ,AncestorType={x:Type lvw:MenuSidebarTreeItem},AncestorLevel=1}}" />
-            <TextBlock Text="{Binding Path=Data.Text}" Visibility="{Binding Path=Data.TextVisibility}" VerticalAlignment="Center"
-                       Padding="{Binding Path=ItemTextPadding, RelativeSource={RelativeSource FindAncestor ,AncestorType={x:Type lvw:MenuSidebarTreeItem},AncestorLevel=1}}" />
+            <Image Source="{Binding MenuIconSource}" Width="{Binding MenuIconSize}"  />
+            <TextBlock Text="{Binding MenuName}" Visibility="{Binding MenuNameVisibility}" VerticalAlignment="Center" HorizontalAlignment="Left"
+                       Padding="{Binding MenuNamePadding}" />
         </StackPanel>
     </HierarchicalDataTemplate>
 
-    <ControlTemplate x:Key="TreeViewItemControlTemplate" TargetType="{x:Type lvw:MenuSidebarTreeItem}">
-        <Grid x:Name="TreeViewItemHeader" Margin="{Binding Path=ItemContainerStyleGridMargin, RelativeSource={RelativeSource FindAncestor ,AncestorType={x:Type lvw:MenuSidebarTreeItem},AncestorLevel=1}}" Background="{Binding Path=Data.MenuItemBackground}" Cursor="Hand" ToolTip="{Binding Path=Data.Tooltip}">
+    <ControlTemplate x:Key="MenuSidebarTreeItemControlTemplate" TargetType="{x:Type lvw:MenuSidebarTreeItem}">
+        <Grid x:Name="TreeViewItemHeader" Margin="{Binding MenuItemContainerMargin}" Background="{Binding MenuItemBackground}"  ToolTip="{Binding Tooltip}"
+              Cursor="Hand">
             <Grid.Style>
                 <Style TargetType="Grid" >
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{Binding Path=Data.MenuItemMouseOverBackground}" />
+                            <Setter Property="Background" Value="{Binding MenuItemMouseOverBackground}" />
                         </Trigger>
                     </Style.Triggers>
                 </Style>
@@ -53,14 +53,14 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Border x:Name="TreeViewHeaderBorder" Grid.Column="0" HorizontalAlignment="Stretch" MouseUp="TreeViewItem_Click" models:TreeViewItemAttachProperty.NodeItemVM="{Binding}" models:TreeViewItemAttachProperty.ExpandCollapseButton="{x:Reference TreeViewExpander}" models:TreeViewItemAttachProperty.HasItemsTreeViewItem="{Binding Path=HasItems, RelativeSource={RelativeSource TemplatedParent}}" >
+            <Border x:Name="MenuSidebarTreeItem_PART_HeaderBorder" Grid.Column="0" HorizontalAlignment="Stretch" MouseUp="MenuSidebarTreeItem_Click" models:MenuSidebarTreeAttachProperty.Item="{Binding}" models:MenuSidebarTreeAttachProperty.ExpandCollapseButton="{x:Reference MenuSidebarTreeItem_PART_Expander}" models:MenuSidebarTreeAttachProperty.MenuItemHasItems="{Binding Path=HasItems, RelativeSource={RelativeSource TemplatedParent}}" >
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <ContentPresenter x:Name="TreeViewHeaderBorder_PART_Header" ContentSource="Header" />
-                    <lvw:ExpandCollapseButton x:Name="TreeViewExpander" Grid.Column="1" IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" Background="Transparent" ClickMode="Press" Margin="1" VerticalContentAlignment="Center" HorizontalAlignment="Right" Height="{Binding Path=MenuItemHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type lvw:MenuSidebarTree}, AncestorLevel=1}}" Width="{Binding Path=MenuItemHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type lvw:MenuSidebarTree}, AncestorLevel=1}}" ArrowLineCap="Round" ArrowLineJoin="Round" ArrowStartType="Right" >
+                    <lvw:ExpandCollapseButton x:Name="MenuSidebarTreeItem_PART_Expander" Grid.Column="1" IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" Background="Transparent" ClickMode="Press" Margin="1" VerticalContentAlignment="Center" HorizontalAlignment="Right" Height="{Binding Path=MenuItemHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type lvw:MenuSidebarTree}, AncestorLevel=1}}" Width="{Binding Path=MenuItemHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type lvw:MenuSidebarTree}, AncestorLevel=1}}" ArrowLineCap="Round" ArrowLineJoin="Round" ArrowStartType="Right" >
                         <lvw:ExpandCollapseButton.Style>
                             <Style TargetType="lvw:ExpandCollapseButton" >
                                 <Setter Property="Focusable" Value="False"/>
@@ -76,11 +76,11 @@
                 <Setter TargetName="TreeViewItemsHost" Property="Visibility" Value="Collapsed"/>
             </Trigger>
             <Trigger Property="HasItems" Value="false">
-                <Setter TargetName="TreeViewExpander" Property="Visibility" Value="Hidden"/>
+                <Setter TargetName="MenuSidebarTreeItem_PART_Expander" Property="Visibility" Value="Hidden"/>
             </Trigger>
             <Trigger Property="IsSelected" Value="true">
-                <Setter TargetName="TreeViewHeaderBorder" Property="Background" Value="{Binding Path=Data.MenuItemMouseOverBackground}"/>
-                <Setter TargetName="TreeViewExpander" Property="Background" Value="{Binding Path=Data.MenuItemMouseOverBackground}"/>
+                <Setter TargetName="MenuSidebarTreeItem_PART_HeaderBorder" Property="Background" Value="{Binding Path=Data.MenuItemMouseOverBackground}"/>
+                <Setter TargetName="MenuSidebarTreeItem_PART_Expander" Property="Background" Value="{Binding Path=Data.MenuItemMouseOverBackground}"/>
                 <Setter Property="Foreground" Value="{Binding Path=Data.MenuItemMouseOverForeground}"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
@@ -91,12 +91,12 @@
 
     <Style TargetType="{x:Type lvw:MenuSidebarTree}">
         <Setter Property="Template" Value="{StaticResource MenuSidebarTreeControlTemplate}" />
-        <Setter Property="ItemTemplate" Value="{StaticResource MenuSidebarTreeHierarchicalDataTemplate}"/>
+        <Setter Property="ItemTemplate" Value="{StaticResource MenuSidebarTreeItemHierarchicalDataTemplate}"/>
         <Setter Property="ItemContainerStyle">
             <Setter.Value>
                 <Style TargetType="TreeViewItem">
                     <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
-                    <Setter Property="Template" Value="{StaticResource TreeViewItemControlTemplate}" />
+                    <Setter Property="Template" Value="{StaticResource MenuSidebarTreeItemControlTemplate}" />
                 </Style>
             </Setter.Value>
         </Setter>

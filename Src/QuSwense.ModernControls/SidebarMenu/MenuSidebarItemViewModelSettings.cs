@@ -3,7 +3,7 @@ using System.Windows.Media;
 
 namespace QuSwense.ModernControls.ViewModel
 {
-    public class UIMenuNodeItemVMSettings
+    public class MenuSidebarItemViewModelSettings
     {
         public Visibility DefaultTextVisibility { get; set; }
         public double DefaultMenuIconSize { get; set; }
@@ -13,7 +13,7 @@ namespace QuSwense.ModernControls.ViewModel
         public Brush DefaultMenuItemBackground { get; set; }
         public Brush DefaultMenuItemMouseOverBackground { get; set; }
 
-        public UIMenuNodeItemVMSettings(string assemblyName, string baseImagePath)
+        public MenuSidebarItemViewModelSettings(string assemblyName, string baseImagePath)
         {
             DefaultTextVisibility = Visibility.Visible;
             DefaultMenuIconSize = 20.0;
